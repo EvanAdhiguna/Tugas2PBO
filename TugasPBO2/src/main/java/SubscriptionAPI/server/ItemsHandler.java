@@ -4,6 +4,7 @@ import SubscriptionAPI.presistence.*;
 import SubscriptionAPI.sketch.Customers;
 import SubscriptionAPI.sketch.Items;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.sql.SQLException;
@@ -38,36 +39,42 @@ public class ItemsHandler {
     public JSONObject getItem(String[] path) throws SQLException {
         int idItem = 0;
         JSONObject jsonItem = null;
-        if (path.length == 2) {
-            jsonItem = new JSONObject();
-            JSONArray jsonItemArray = new JSONArray();
-            ArrayList<Items> listItems = itemsDO.selectAllItems();
-            for (Items items : listItems) {
-                JSONObject jsonItemRecord = new JSONObject();
-                jsonItemRecord.put("id", items.getId());
-                jsonItemRecord.put("name", items.getName());
-                jsonItemRecord.put("price", items.getPrice());
-                jsonItemRecord.put("type", items.getType());
-                jsonItemRecord.put("is_active", items.getIs_active());
-                jsonItemArray.put(jsonItemRecord);
+        try {
+            if (path.length == 2) {
+                jsonItem = new JSONObject();
+                JSONArray jsonItemArray = new JSONArray();
+                ArrayList<Items> listItems = itemsDO.selectAllItems();
+                for (Items items : listItems) {
+                    JSONObject jsonItemRecord = new JSONObject();
+                    jsonItemRecord.put("id", items.getId());
+                    jsonItemRecord.put("name", items.getName());
+                    jsonItemRecord.put("price", items.getPrice());
+                    jsonItemRecord.put("type", items.getType());
+                    jsonItemRecord.put("is_active", items.getIs_active());
+                    jsonItemArray.put(jsonItemRecord);
+                }
+                jsonItem.put("Item Record", jsonItemArray);
+            } else if (path.length == 3) {
+                jsonItem = new JSONObject();
+                idItem = Integer.valueOf(path[2]);
+                Items items = itemsDO.selectItemById(idItem);
+                if (items.getId() != 0) {
+                    JSONObject jsonItemRecord = new JSONObject();
+                    jsonItemRecord.put("id", items.getId());
+                    jsonItemRecord.put("name", items.getName());
+                    jsonItemRecord.put("price", items.getPrice());
+                    jsonItemRecord.put("type", items.getType());
+                    jsonItemRecord.put("is_active", items.getIs_active());
+                    jsonItem.put("Item Record", jsonItemRecord);
+                }
             }
-            jsonItem.put("Item Record", jsonItemArray);
-        } else if (path.length == 3) {
-            jsonItem = new JSONObject();
-            idItem = Integer.valueOf(path[2]);
-            Items items = itemsDO.selectItemById(idItem);
-            if (items.getId() != 0) {
-                JSONObject jsonItemRecord = new JSONObject();
-                jsonItemRecord.put("id", items.getId());
-                jsonItemRecord.put("name", items.getName());
-                jsonItemRecord.put("price", items.getPrice());
-                jsonItemRecord.put("type", items.getType());
-                jsonItemRecord.put("is_active", items.getIs_active());
-                jsonItem.put("Item Record", jsonItemRecord);
-            }
+        } catch (JSONException e) {
+            System.err.println("Error processing JSON: " + e.getMessage());
+            e.printStackTrace();
         }
         return jsonItem;
     }
+
     // POST  ITEMS (INSERT in Database)
     public String postingItem(JSONObject jsonReqBody) throws SQLException {
         Items items = itemsParseJSONData(jsonReqBody);
