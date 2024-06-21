@@ -3,6 +3,7 @@ package SubscriptionAPI.server;
 import SubscriptionAPI.presistence.ItemsDO;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.*;
@@ -29,6 +30,7 @@ public class ServerHandler implements HttpHandler {
             }
             if ("customers".equals(path[1])) {
                 JSONObject jsonCustomer = null;
+
                 try {
                     jsonCustomer = customersHandler.getCustomer(path);
                     if (jsonCustomer != null)
@@ -61,7 +63,7 @@ public class ServerHandler implements HttpHandler {
                         responseHandler.sendResponse(exchange, 404, "Not Found");
                     }
                 } catch (SQLException e) {
-                    throw new RuntimeException(e);
+                    throw new RuntimeException("Error retrieving item: " + e.getMessage(), e);
                 }
             } else if ("items?is_active=true".equals(path[1])) {
                 JSONObject jsonItem = null;
@@ -75,7 +77,10 @@ public class ServerHandler implements HttpHandler {
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
-            }
+            }  else {
+            response = "404 ENTITY NOT FOUND";
+            responseHandler.sendResponse(exchange, 400, response);
+        }
         }else if ("POST".equals(exchange.getRequestMethod())) {
             // POST
              if ("customers".equals(path[1])) {
@@ -149,6 +154,15 @@ public class ServerHandler implements HttpHandler {
                     } catch (SQLException | ClassNotFoundException e) {
                         throw new RuntimeException(e);
                     }
+            } else if("cards".equals(path[3])){
+                try {
+                    response = cardsHandler.deleteCardsIfNotPrimary(path);
+                    responseHandler.sendResponse(exchange, 200, response);
+                } catch (JSONException e) {
+                    responseHandler.sendResponse(exchange, 400, "Invalid Json Format");
+                } catch (SQLException e){
+                    throw new RuntimeException(e);
+                }
             } else {
                 response = "404 ENTITY NOT FOUND";
                 responseHandler.sendResponse(exchange, 400, response);
@@ -159,7 +173,7 @@ public class ServerHandler implements HttpHandler {
     }
 
     private void handleUnsupportedMethod(HttpExchange exchange) throws IOException {
-        response = "RequestHandler method tidak didukung/tidak ada.";
+        response = "404 ERROR NOT FOUND";
         responseHandler.sendResponse(exchange, 405, response);
     }
         private JSONObject parseRequestBody (InputStream requestBody) throws IOException {
