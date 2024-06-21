@@ -93,4 +93,4 @@ http://localhost:9139/roger/2 (Tidak ada entitas ROGER)
 
 ### ERROR 405
 PATCH http://localhost:9139 (Di luar GET, POST, PUT, DELETE)
-<img src = "Image/ERROR405.jpeg">
+<img src = "Image/ERROR 405.jpeg">
