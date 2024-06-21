@@ -27,7 +27,7 @@ http://localhost:9139/customers/2/cards
 <img src = "Image/getCustomersIdCards.jpeg">
 
 Mendapatkan record customer subscription record berdasarkan ID customer adalah 2 </br>
-http://localhost:9139/customers/2/subscriptions?subscriptions_status=active
+http://localhost:9052/customers/2/subscriptions
 <img src = "Image/GETCustomerIdSubs.jpeg">
 
 Mendapatkan seluruh record item </br>
@@ -45,6 +45,10 @@ http://localhost:9139/items?is_active=true
 Mendapatkan record semua subscription </br>
 http://localhost:9139/subscriptions
 <img src = "Image/GETsubscriptions.jpeg">
+
+Mendapatkan record subscription dengan current term end descending </br>
+http://localhost:9139/subscriptions?sort_by=current_term_end&sort_type=desc
+<img src = "Image/GETsubscriptionsdesc.jpeg">
 
 
 ### POST
