@@ -30,17 +30,18 @@ Mendapatkan record item dengan ID item adalah 1 </br>
 http://localhost:9139/items/1
 <img src = "Image/GETitems_id.jpeg">
 
+Mendapatkan record item dengan status active adalah true </br>
+http://localhost:9139/items?is_active=true
+<img src = "Image/GETitemsis_active=true.jpeg">
+
 Mendapatkan record semua subscription </br>
 http://localhost:9139/subscriptions
-<img src = "Image/GETsubscription.jpeg">
+<img src = "Image/GETsubscriptions.jpeg">
 
 Mendapatkan record customer's subscription record berdasarkan ID customer adalah 1 </br>
 http://localhost:9139/customers/1/subscriptions?subscriptions_status=active
-<img src = "Image/getCustomerIdSubscription.jpeg">
+<img src = "Image/getCustomerIdSubscriptions.jpeg">
 
-Mendapatkan record item dengan status active adalah true </br>
-http://localhost:9139/items?is_active=true
-<img src = "Image/GETitemsis_active.jpeg">
 
 
 ### POST
@@ -72,3 +73,6 @@ http://localhost:9139/items/2
 Menghapus atau mengubah status is_active menjadi false pada Items berdasarkan ID </br>
 http://localhost:9139/items/2
 <img src = "Image/deleteItemsId.jpeg">
+
+Menghapus informasi kartu kredit pelanggan jika is_primary bernilai false </br>
+http://localhost:9139/customer/1/cards/6
