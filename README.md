@@ -23,10 +23,12 @@ http://localhost:9139/customers/2
 <img src = "Image/getCustomerId.jpeg">
 
 Mendapatkan record cards dengan ID Customer adalah </br>
-http://localhost:9139/customers/1/cards
+http://localhost:9139/customers/2/cards
+<img src = "Image/getCustomersIdCards.jpeg">
 
 Mendapatkan record subscriptions dengan ID customer adalah 1 </br>
 http://localhost:9139/customers/1/subscriptions
+<img src = "Image/GETitems_id.jpeg">
 
 Mendapatkan seluruh record item </br>
 http://localhost:9139/items
