@@ -50,7 +50,7 @@ Mendapatkan record subscription dengan current term end descending </br>
 http://localhost:9139/subscriptions?sort_by=current_term_end&sort_type=desc
 <img src = "Image/GETsubscriptionsdesc.jpeg">
 
-
+##
 ### POST
 Menambahkan data baru pada Customers </br>
 http://localhost:9139/customers
@@ -66,7 +66,7 @@ http://localhost:9139/subscriptions
 <br/>
 
 
-
+##
 ### PUT
 Mengupdate data Customers </br>
 http://localhost:9139/customers/7
@@ -76,6 +76,7 @@ Mengupdate data Items </br>
 http://localhost:9139/items/2
 <img src = "Image/PUT items_id.jpeg">
 
+##
 ### DELETE
 Menghapus atau mengubah status is_active menjadi false pada Items berdasarkan ID </br>
 http://localhost:9139/items/2
@@ -84,3 +85,12 @@ http://localhost:9139/items/2
 Menghapus informasi kartu kredit customer jika is_primary bernilai false </br>
 http://localhost:9139/customer/5/cards/5
 <img src = "Image/deleteCustomerCard.jpeg">
+
+##
+### ERROR 404
+http://localhost:9139/roger/2 (Tidak ada entitas ROGER)
+<img src = "Image/ERROR404.jpeg">
+
+### ERROR 405
+PATCH http://localhost:9139 (Di luar GET, POST, PUT, DELETE)
+<img src = "Image/ERROR405.jpeg">
