@@ -69,8 +69,8 @@ http://localhost:9139/subscriptions
 ##
 ### PUT
 Mengupdate data Customers </br>
-http://localhost:9139/customers/7
-<img src = "Image/putCustomerId.jpeg">
+http://localhost:9139/customers/2
+<img src = "Image/PUTCustomer.jpeg">
 
 Mengupdate data Items </br>
 http://localhost:9139/items/2
