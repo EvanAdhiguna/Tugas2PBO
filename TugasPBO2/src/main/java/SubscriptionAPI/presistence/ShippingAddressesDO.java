@@ -19,7 +19,7 @@ public class ShippingAddressesDO {
         try {
             Class.forName("org.sqlite.JDBC");
             // Establish connection to SQLite database
-            connection = DriverManager.getConnection("jdbc:sqlite:ecommerce.db");
+            connection = DriverManager.getConnection("jdbc:sqlite:subscriptions.db");
             System.out.println("Connected to database");
             statement = connection.prepareStatement("SELECT * FROM shipping_addresses WHERE customer = ?");
             statement.setInt(1, idCustomer);
@@ -57,7 +57,7 @@ public class ShippingAddressesDO {
         try {
             Class.forName("org.sqlite.JDBC");
             // Establish connection to SQLite database
-            connection = DriverManager.getConnection("jdbc:sqlite:ecommerce.db");
+            connection = DriverManager.getConnection("jdbc:sqlite:subscriptions.db");
             System.out.println("Connected to database");
             statement = connection.prepareStatement("INSERT INTO shipping_addresses (customer, title, line1, line2, city, province, postcode) VALUES (?, ?, ?, ?, ?, ?, ?)");
             statement.setInt(1, address.getCustomer());
@@ -96,7 +96,7 @@ public class ShippingAddressesDO {
         try {
             Class.forName("org.sqlite.JDBC");
             // Establish connection to SQLite database
-            connection = DriverManager.getConnection("jdbc:sqlite:ecommerce.db");
+            connection = DriverManager.getConnection("jdbc:sqlite:subscriptions.db");
             System.out.println("Connected to database");
             statement = connection.prepareStatement("UPDATE shipping_addresses SET title = ?, line1 = ?, line2 = ?, " +
                     "city = ?, province = ?, postcode = ? WHERE id = ?");
@@ -135,7 +135,7 @@ public class ShippingAddressesDO {
         try {
             Class.forName("org.sqlite.JDBC");
             // Establish connection to SQLite database
-            connection = DriverManager.getConnection("jdbc:sqlite:ecommerce.db");
+            connection = DriverManager.getConnection("jdbc:sqlite:subscriptions.db");
             System.out.println("Connected to database");
             statement = connection.prepareStatement("DELETE FROM shipping_addresses WHERE id = ?");
             statement.setInt(1, idAddress);
