@@ -20,7 +20,7 @@ public class SubscriptionsHandler {
     SubscriptionsItemsDO subscriptionsItemsDO = new SubscriptionsItemsDO();
 
     public JSONObject getSubscription(String[] path) throws SQLException {
-        JSONObject jsonSubscriptions = null;
+        JSONObject jsonSubscriptions = new JSONObject();
         if (path.length == 2) {
             jsonSubscriptions = new JSONObject();
             JSONArray jsonSubscriptionArray = new JSONArray();
@@ -39,6 +39,34 @@ public class SubscriptionsHandler {
                 jsonSubscriptionArray.put(jsonSubscriptionRecord);
             }
             jsonSubscriptions.put("Subscriptions Record", jsonSubscriptionArray);
+
+        } else if (path.length == 3) {
+            JSONObject jsonSubs= new JSONObject();
+            int idSubscription = Integer.valueOf(path[2]);
+            JSONArray jsonSubscriptionArray = new JSONArray();
+            Subscriptions subscriptions = subscriptionsDO.selectSubscriptionById(idSubscription);
+
+            if (subscriptions.getId() != 0) {
+                JSONObject jsonSubscriptionRecord = new JSONObject();
+                jsonSubscriptionRecord.put("id", subscriptions.getId());
+                jsonSubscriptionRecord.put("customer", subscriptions.getCustomer());
+                jsonSubscriptionRecord.put("billing_period", subscriptions.getBilling_period());
+                jsonSubscriptionRecord.put("billing_period_unit", subscriptions.getBilling_period_unit());
+                jsonSubscriptionRecord.put("total_due", subscriptions.getTotal_due());
+                jsonSubscriptionRecord.put("activated_at", subscriptions.getActivated_at());
+                jsonSubscriptionRecord.put("current_term_start", subscriptions.getCurrent_term_start());
+                jsonSubscriptionRecord.put("current_term_end", subscriptions.getCurrent_term_end());
+                jsonSubscriptionRecord.put("status", subscriptions.getStatus());
+                jsonSubscriptionArray.put(jsonSubscriptionRecord);
+            }
+        } else if ("subscriptions?sort_by=current_term_end&sort_type_desc".equals(path[1])) {
+                JSONArray jsonArrays = new JSONArray();
+                ArrayList<Subscriptions> ListArraySubs = subscriptionsDO.getAllSubscriptionsSortedByTermEnd();
+                for (Subscriptions subscriptions : ListArraySubs) {
+                    jsonArrays.put(toJSONObject(subscriptions));
+                }
+                jsonSubscriptions.put("Subscriptions Record Data", jsonArrays);
+
         }
         return jsonSubscriptions;
     }
@@ -62,6 +90,20 @@ public class SubscriptionsHandler {
         subscriptions.setCurrent_term_end(jsonReqBody.optString("current_term_end"));
         subscriptions.setStatus(jsonReqBody.optString("status"));
         return subscriptions;
+    }
+
+    private JSONObject toJSONObject(Subscriptions subscriptions) {
+        JSONObject jsonSubsResult = new JSONObject();
+        jsonSubsResult.put("id", subscriptions.getId());
+        jsonSubsResult.put("customer", subscriptions.getId());
+        jsonSubsResult.put("billing_period", subscriptions.getBilling_period());
+        jsonSubsResult.put("billing_period_unit", subscriptions.getBilling_period_unit());
+        jsonSubsResult.put("total_due", subscriptions.getTotal_due());
+        jsonSubsResult.put("activated_at", subscriptions.getActivated_at());
+        jsonSubsResult.put("current_term_start", subscriptions.getCurrent_term_start());
+        jsonSubsResult.put("current_term_end", subscriptions.getCurrent_term_end());
+        jsonSubsResult.put("status", subscriptions.getStatus());
+        return jsonSubsResult;
     }
 
 }
