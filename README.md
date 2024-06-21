@@ -22,6 +22,12 @@ Mendapatkan record customer dengan ID customer adalah 2 </br>
 http://localhost:9139/customers/2
 <img src = "Image/getCustomerId.jpeg">
 
+Mendapatkan record cards dengan ID Customer adalah </br>
+http://localhost:9139/customers/1/cards
+
+Mendapatkan record subscriptions dengan ID customer adalah 1 </br>
+http://localhost:9139/customers/1/subscriptions
+
 Mendapatkan seluruh record item </br>
 http://localhost:9139/items
 <img src = "Image/GETitems.jpeg">
@@ -74,5 +80,6 @@ Menghapus atau mengubah status is_active menjadi false pada Items berdasarkan ID
 http://localhost:9139/items/2
 <img src = "Image/deleteItemsId.jpeg">
 
-Menghapus informasi kartu kredit pelanggan jika is_primary bernilai false </br>
-http://localhost:9139/customer/1/cards/6
+Menghapus informasi kartu kredit customer jika is_primary bernilai false </br>
+http://localhost:9139/customer/5/cards/5
+<img src = "Image/deleteCustomerCard.jpeg">
