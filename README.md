@@ -14,10 +14,6 @@ Program ini memiliki 3 tipe class, yaitu class untuk masing-masing Entitas yang 
 Program ini pada dasarnya dapat diakses melalui **localhost:9139** menggunakan web browser. Namun, untuk mempermudah pengujian dan memastikan berbagai fungsi API bekerja dengan benar, aplikasi ini diuji menggunakan Postman. 
 
 ### GET
-Mendapatkan seluruh record item </br>
-http://localhost:9139/items
-<img src = "Image/GETitems.jpeg">
-
 Mendapatkan seluruh record customer </br>
 http://localhost:9139/customers
 <img src = "Image/getCustomer.jpeg">
@@ -25,6 +21,10 @@ http://localhost:9139/customers
 Mendapatkan record customer dengan ID customer adalah 2 </br>
 http://localhost:9139/customers/2
 <img src = "Image/getCustomerId.jpeg">
+
+Mendapatkan seluruh record item </br>
+http://localhost:9139/items
+<img src = "Image/GETitems.jpeg">
 
 Mendapatkan record item dengan ID item adalah 1 </br>
 http://localhost:9139/items/1
@@ -38,22 +38,37 @@ Mendapatkan record customer's subscription record berdasarkan ID customer adalah
 http://localhost:9139/customers/1/subscriptions?subscriptions_status=active
 <img src = "Image/getCustomerIdSubscription.jpeg">
 
-
-
-
-
-
-
-
-
-
-
+Mendapatkan record item dengan status active adalah true </br>
+http://localhost:9139/items?is_active=true
+<img src = "Image/GETitemsis_active.jpeg">
 
 
 ### POST
+Menambahkan data baru pada Customers </br>
+http://localhost:9139/customers
+<img src = "Image/POSTcustomers.jpeg">
+
+Menambahkan data baru pada Items </br>
+http://localhost:9139/items
+<img src = "Image/POST items.jpeg">
+
+Menambahkan data baru pada Subscriptions </br>
+http://localhost:9139/subscriptions
+<img src = "Image/postSubscription.jpeg">
+<br/>
+
 
 
 ### PUT
+Mengupdate data Customers </br>
+http://localhost:9139/customers/7
+<img src = "Image/putCustomerId.jpeg">
 
+Mengupdate data Items </br>
+http://localhost:9139/items/2
+<img src = "Image/PUT items_id.jpeg">
 
 ### DELETE
+Menghapus atau mengubah status is_active menjadi false pada Items berdasarkan ID </br>
+http://localhost:9139/items/2
+<img src = "Image/deleteItemsId.jpeg">
