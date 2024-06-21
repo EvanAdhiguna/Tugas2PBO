@@ -26,9 +26,9 @@ Mendapatkan record cards dengan ID Customer adalah </br>
 http://localhost:9139/customers/2/cards
 <img src = "Image/getCustomersIdCards.jpeg">
 
-Mendapatkan record customer's subscription record berdasarkan ID customer adalah 1 </br>
-http://localhost:9139/customers/1/subscriptions?subscriptions_status=active
-<img src = "Image/getCustomerIdSubscriptions.jpeg">
+Mendapatkan record customer subscription record berdasarkan ID customer adalah 2 </br>
+http://localhost:9139/customers/2/subscriptions?subscriptions_status=active
+<img src = "Image/GETCustomerIdSubs.jpeg">
 
 Mendapatkan seluruh record item </br>
 http://localhost:9139/items
