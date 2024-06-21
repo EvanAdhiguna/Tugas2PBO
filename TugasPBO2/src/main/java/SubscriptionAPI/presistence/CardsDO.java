@@ -271,8 +271,3 @@ public class CardsDO {
     }
 
 }
-
-
-
-
-
